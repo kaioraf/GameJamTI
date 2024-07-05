@@ -1,0 +1,41 @@
+palettes:
+  - name: global_palette
+    fixed-entries:
+      - color: {index: 0, r: 255, g: 255, b: 255}
+      - color: {index: 1, r: 255, g: 216, b: 0}
+    images: automatic
+
+converts:
+  - name: tileset
+    palette: global_palette
+    transparent-color-index: 0
+    tilesets:
+      tile-width: 16
+      tile-height: 16
+      images:
+        - snowSet1.png
+        - GUI.png
+      tile-width: 27
+      tile-height: 27
+      images:
+        - SwordMap.png
+      tile-width: 25
+      tile-height: 38
+      images:
+        - SwordSet2.png
+  - name: sprites
+    palette: global_palette
+    transparent-color-index: 0
+    images:
+      - PlayerSprite.png
+      - knightEnemy.png
+      - knight2.png
+
+outputs:
+  - type: c
+    include-file: gfx.h
+    palettes:
+      - global_palette
+    converts:
+      - tileset
+      - sprites
