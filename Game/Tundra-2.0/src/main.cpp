@@ -16,25 +16,14 @@ void GraphxSetup()
     gfx_SetClipRegion(0, 16, 320, 240);
     /* Set the palette */
     gfx_SetPalette(global_palette, sizeof_global_palette, 0);
-    gfx_SetColor(64);
-    gfx_SetTextFGColor(1);
-    gfx_SetTextBGColor(0);
+    // gfx_SetColor(64);
+    // gfx_SetTextFGColor(1);
+    // gfx_SetTextBGColor(0);
 
     /* Draw to buffer to avoid tearing */
     gfx_SetDrawBuffer();
     return;
 }
-
-// void decompress(gfx_sprite_t *tileset_tiles[], unsigned char *tileset_tiles_compressed[], int tileWidth, int tileHeight)
-// {
-//     gfx_sprite_t *tmp_ptr;
-//     for (unsigned int i = 0; i < sizeof(tileset_tiles) / sizeof(gfx_sprite_t*); ++i)
-//     {
-//         tmp_ptr = gfx_MallocSprite(TILE_WIDTH, TILE_HEIGHT);
-//         zx7_Decompress(tmp_ptr, tileset_tiles_compressed[i]);
-//         tileset_tiles[i] = tmp_ptr;
-//     }
-// }
 
 int main()
 {
@@ -44,7 +33,6 @@ int main()
     // decompress(SwordMap_tiles, SwordMap_tiles_compressed, 27, 27);
     // decompress(SwordSet2_tiles, SwordSet2_tiles_compressed, 25, 38);
     Tilemap *snowLevel_1 = new Tilemap(snowLevel_1_map, snowSet1_tiles, gfx_tile_16_pixel, TILE_WIDTH, TILE_HEIGHT, snowLevel1_DRAW_WIDTH, snowLevel1_DRAW_HEIGHT, snowLevel1_HEIGHT, snowLevel1_WIDTH, snowLevel1_X_OFFSET, snowLevel1_Y_OFFSET, 0, 0);
-    Tilemap *snowLevel_2 = new Tilemap(snowLevel_2_map, snowSet1_tiles, gfx_tile_16_pixel, TILE_WIDTH,TILE_HEIGHT, snowLevel2_DRAW_WIDTH, snowLevel2_DRAW_HEIGHT, snowLevel2_HEIGHT, snowLevel2_WIDTH, snowLevel2_X_OFFSET, snowLevel2_Y_OFFSET, 0, 1);
     Vector<Tilemap*> levels(0);
     levels.pushBack(snowLevel_2);
     levels.pushBack(snowLevel_1);
