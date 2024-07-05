@@ -48,14 +48,12 @@ void Player::FlipSprite()
     isFlipped = !isFlipped;
 }
 
-void Player::updateMovement(int timeSinceLastUpdate, kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vector<Enemy> enemies, Weapon *sword) 
+int Player::updateMovement(int timeSinceLastUpdate) 
 {
     jumpAccel -= gravity;
-    jumpVelocity += timeSinceLastUpdate * jumpAccel;
+    jumpVelocity += (timeSinceLastUpdate / 100) * jumpAccel;
 
-    tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + movementY);
-    if (!currentLevel->isWalkable(tileToWalkTo)) return;
-    animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
+    return jumpVelocity;
 }
 
 void Player::update()

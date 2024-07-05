@@ -79,10 +79,6 @@ void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vecto
         if (arrows & kb_Up) // 2nd instead of kb_up
         {
             player.jumpAccel = 10;
-
-            // tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + movementY);
-            // if (!currentLevel->isWalkable(tileToWalkTo)) return;
-            // animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
         }
         if (arrows & kb_Right)
         {
@@ -124,6 +120,10 @@ void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vecto
             Player->MoveDestination(movementX, movementY);
         }
     }
+}
+
+bool playerDownCollides(int posx, int posy) {
+    tilemap.collisionDown(posx, posy);
 }
 
 int menuInput(Menu *currentMenu)
