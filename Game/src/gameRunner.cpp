@@ -70,12 +70,12 @@ void runMenu(
 void runGame(
     Player *player
     , Vector<Tilemap *> levels
-    , Weapon *Sword
-    , Vector<Enemy> enemies
-    , Menu *mainMenu
-    , Menu *optionsMenu
-    , Menu *gameOverMenu
-    , Menu *winMenu
+    // , Weapon *Sword
+    // , Vector<Enemy> enemies
+    // , Menu *mainMenu
+    // , Menu *optionsMenu
+    // , Menu *gameOverMenu
+    // , Menu *winMenu
     )
 {
     clock_t clockTime = clock();
@@ -84,16 +84,16 @@ void runGame(
     srand(time(NULL));
     rand();
     bool stopGame = false;
-    bool menuOpen = false;
+    // bool menuOpen = false;
     kb_key_t arrows;
     kb_key_t controlButtons;
-    Menu *currentMenu;
-    currentMenu = mainMenu;
+    // Menu *currentMenu;
+    // currentMenu = mainMenu;
     int levelIndex = 0;
     int amountOfLevels = levels.size();
     Tilemap *currentLevel = levels.at(levelIndex);
-    Weapon *currentWeapon = Sword;
-    bool hasChestLoot = false;
+    // Weapon *currentWeapon = Sword;
+    // bool hasChestLoot = false;
     do
     {
         clockTime = clock();
