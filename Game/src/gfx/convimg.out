@@ -1,0 +1,7 @@
+global_palette.h
+global_palette.c
+Dungeonset.h
+Dungeonset.c
+PlayerSprite.h
+PlayerSprite.c
+gfx.h
