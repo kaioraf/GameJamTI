@@ -106,7 +106,7 @@ void runGame(
 
         if (timeSinceLastUpdate > 1092) // update 30 times per second
         {
-            movementInput(arrows, currentLevel, player, enemies, currentWeapon);
+            movementInput(arrows, currentLevel, player/* , enemies, currentWeapon */);
 
             int tileToWalkTo = currentLevel->ConvertPosition(player->x + 0, player->y + player->jumpVelocity * timeSinceLastUpdate/100);
             if (!currentLevel->isWalkable(tileToWalkTo)) return;
@@ -121,17 +121,17 @@ void runGame(
 
             player->x = player->x + timeSinceLastUpdate/100 * jumpAccel;
 
-            weaponInput(controlButtons, currentWeapon);
-            updateAll(currentLevel, player, currentWeapon, enemies);
-            if (shouldChestOpen(currentLevel, player, controlButtons) && !hasChestLoot)
-            {
-                delete Sword;
-                dbg_printf("deleted ");
-                currentWeapon = new Weapon(sword_2_map, SwordSet2_tiles, gfx_tile_no_pow2, sword2Tile_WIDTH, sword2Tile_HEIGHT, sword_DRAW_HEIGHT, sword_DRAW_WIDTH, sword2_HEIGHT, sword2_WIDTH, sword_X_OFFSET, sword_Y_OFFSET, 0, 0, sword2Tile_HEIGHT/2, swordTile_HEIGHT/2, TILE_WIDTH, 0);
-                currentWeapon->Flip();
-                openChest(currentLevel->tilemapID, currentLevel);
-                hasChestLoot = true;
-            }
+            // weaponInput(controlButtons, currentWeapon);
+            updateAll(currentLevel, player/* , currentWeapon, enemies */);
+            // if (shouldChestOpen(currentLevel, player, controlButtons) && !hasChestLoot)
+            // {
+            //     delete Sword;
+            //     dbg_printf("deleted ");
+            //     currentWeapon = new Weapon(sword_2_map, SwordSet2_tiles, gfx_tile_no_pow2, sword2Tile_WIDTH, sword2Tile_HEIGHT, sword_DRAW_HEIGHT, sword_DRAW_WIDTH, sword2_HEIGHT, sword2_WIDTH, sword_X_OFFSET, sword_Y_OFFSET, 0, 0, sword2Tile_HEIGHT/2, swordTile_HEIGHT/2, TILE_WIDTH, 0);
+            //     currentWeapon->Flip();
+            //     openChest(currentLevel->tilemapID, currentLevel);
+            //     hasChestLoot = true;
+            // }
             DrawStatusText(player, timeSinceLastUpdate);
             // dbg_printf("%i \n", CLOCKS_PER_SEC / timeSinceLastUpdate); //fps debug print
             lastUpdate = clockTime;
