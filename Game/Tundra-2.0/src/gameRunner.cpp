@@ -107,6 +107,7 @@ void runGame(
         if (timeSinceLastUpdate > 1092) // update 30 times per second
         {
             movementInput(arrows, currentLevel, player, enemies, currentWeapon);
+            player.updateMovement(timeSinceLastUpdate, arrows, currentLevel, player, enemies, currentWeapon);
             weaponInput(controlButtons, currentWeapon);
             updateAll(currentLevel, player, currentWeapon, enemies);
             if (shouldChestOpen(currentLevel, player, controlButtons) && !hasChestLoot)

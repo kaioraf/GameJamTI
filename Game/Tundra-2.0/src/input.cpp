@@ -4,14 +4,18 @@ bool tilemapShouldMove(char direction, Tilemap *currentLevel, Player *Player)
 {
     bool playerCentred;
     int tilemapLimit;
+    // jump speed
+    // movement speed
+    // fall speed / gravity
+
     switch (direction)
     {
-        case 'd':
+        case 'd': // up jump
             playerCentred = PLAYER_START_Y == Player->y;
             if (!playerCentred) return false;
             tilemapLimit = (currentLevel->tilemap.height * TILE_HEIGHT) - ((currentLevel->tilemap.draw_height - 1) * TILE_HEIGHT);
             break;
-        case 'u':
+        case 'u': // down gravity
             playerCentred = PLAYER_START_Y == Player->y;
             if (!playerCentred) return false;
             tilemapLimit = 0;
@@ -72,32 +76,25 @@ void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vecto
     int movementX, movementY;
     if (arrows && !currentLevel->isMoving && !Player->isMoving)
     {
-        if (arrows & kb_Down)
+        if (arrows & kb_Up) // 2nd instead of kb_up
         {
-            movementX = 0;
-            movementY = 16;
-            tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + movementY);
-            if (!currentLevel->isWalkable(tileToWalkTo)) return;
-            animatingTilemap = tilemapShouldMove('d', currentLevel, Player);
+            player.jumpAccel = 10;
+
+            // tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + movementY);
+            // if (!currentLevel->isWalkable(tileToWalkTo)) return;
+            // animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
         }
-        else if (arrows & kb_Up)
-        {
-            movementX = 0;
-            movementY = -16;
-            tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + movementY);
-            if (!currentLevel->isWalkable(tileToWalkTo)) return;
-            animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
-        }
-        else if (arrows & kb_Right)
+        if (arrows & kb_Right)
         {
             if (Player->isFlipped)
             {
                 Player->FlipSprite();
                 sword->Flip();
             }
-            movementX = 16;
-            movementY = 0;
-            tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + movementY);
+
+            movement = player.movementSpeed;
+
+            tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + 0);
             if (!currentLevel->isWalkable(tileToWalkTo)) return;
             animatingTilemap = tilemapShouldMove('r', currentLevel, Player);
         }
@@ -108,9 +105,9 @@ void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vecto
                 Player->FlipSprite();
                 sword->Flip();
             }
-            movementX = -16;
-            movementY = 0;
-            tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + movementY);
+            movementX = -player.movementSpeed;
+
+            tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + 0);
             if (!currentLevel->isWalkable(tileToWalkTo)) return;
             animatingTilemap = tilemapShouldMove('l', currentLevel, Player);
         }

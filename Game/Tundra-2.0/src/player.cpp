@@ -10,6 +10,10 @@ Player::Player(gfx_sprite_t *Foreground, int startX, int startY, int spriteWidth
     hasWon = false;
     score = 0;
     
+    movementSpeed = 10;
+    jumpAccel = 0;
+    jumpVelocity = 0;
+    gravity = 3;
 }
 
 // Draws an indicator around the player to show the direction of another sprite (enemy)
@@ -42,6 +46,16 @@ void Player::FlipSprite()
     foreground = flippedForeground;
     flippedForeground = oldForeground;
     isFlipped = !isFlipped;
+}
+
+void Player::updateMovement(int timeSinceLastUpdate, kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vector<Enemy> enemies, Weapon *sword) 
+{
+    jumpAccel -= gravity;
+    jumpVelocity += timeSinceLastUpdate * jumpAccel;
+
+    tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + movementY);
+    if (!currentLevel->isWalkable(tileToWalkTo)) return;
+    animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
 }
 
 void Player::update()
