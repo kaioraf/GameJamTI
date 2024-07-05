@@ -1,5 +1,4 @@
-obj/src/main.cpp.bc: src/main.cpp \
-  /home/kaio/Documents/Coderclass/CEdev/include/defines.h \
+obj/src/main.cpp.bc: src/main.cpp src/defines.h \
   /home/kaio/Documents/Coderclass/CEdev/include/ti/getcsc.h \
   /home/kaio/Documents/Coderclass/CEdev/include/stdint.h \
   /home/kaio/Documents/Coderclass/CEdev/include/cdefs.h \
@@ -18,7 +17,5 @@ obj/src/main.cpp.bc: src/main.cpp \
   src/gfx/global_palette.h src/gfx/Dungeonset.h src/gfx/PlayerSprite.h \
   /home/kaio/Documents/Coderclass/CEdev/include/compression.h src/menu.h \
   src/menuitem.h src/tilemap.h src/animated.h src/iswalkable.h \
-  src/player.h src/sprite.h \
-  /home/kaio/Documents/Coderclass/CEdev/include/vector/vector.h \
-  src/enemy.h src/weapon.h src/gameRunner.h src/update.h src/input.h \
-  src/levelswitch.h src/chestopen.h
+  src/player.h src/sprite.h src/vector/vector.h src/enemy.h src/weapon.h \
+  src/gameRunner.h src/update.h src/input.h src/levelswitch.h

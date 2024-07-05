@@ -11,6 +11,7 @@ public:
     int tilesetID;
     int tilemapID;
     bool isWalkable(int tileID);
+    bool collision(int posx, int posy);
     bool kills(int tileID);
     int ConvertPosition(int x, int y);
     void update();

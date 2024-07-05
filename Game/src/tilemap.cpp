@@ -22,7 +22,7 @@ Tilemap::Tilemap(unsigned char currentTileMap[], gfx_sprite_t **tilesetTiles, ui
 //gets the tile id of given x and y positions with tilemap x and y offsets
 int Tilemap::ConvertPosition(int x, int y)
 {
-    int tileAtSpritePos = gfx_GetTile(&this->tilemap, this->x + x - snowLevel1_X_OFFSET, this->y + y - snowLevel1_Y_OFFSET); 
+    int tileAtSpritePos = gfx_GetTile(&this->tilemap, this->x + x - dungeonmap_X_OFFSET, this->y + y - dungeonmap_Y_OFFSET); 
     return tileAtSpritePos;
 }
 
@@ -32,16 +32,16 @@ bool Tilemap::isWalkable(int tileID) //returns based on the iswalkable.h file th
     return (*isWalkablePtr[tilesetID])(tileID);
 }
 
-bool Tilemap::collision(int posx, int posy) {
+bool Tilemap::collisionDown(int posx, int posy) {
     int tileAtSpritePos = ConvertPosition(posx, posy);
     isWalkable(tileAtSpritePos);
 }
 
-bool Tilemap::kills(int tileID)
-{
-    bool (*killsPtr[1])(int tileID) = {snowLevel_1kills};
-    return (*killsPtr[tilessetID])(tileID);
-} 
+// bool Tilemap::kills(int tileID)
+// {
+//     bool (*killsPtr[1])(int tileID) = {snowLevel_1kills};
+//     return (*killsPtr[tilessetID])(tileID);
+// } 
 
 void Tilemap::update()
 {

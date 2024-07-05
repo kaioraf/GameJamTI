@@ -1,4 +1,4 @@
-obj/src/input.cpp.bc: src/input.cpp src/input.h src/defines.h \
+obj/src/weapon.cpp.bc: src/weapon.cpp src/weapon.h src/defines.h \
   /home/kaio/Documents/Coderclass/CEdev/include/ti/getcsc.h \
   /home/kaio/Documents/Coderclass/CEdev/include/stdint.h \
   /home/kaio/Documents/Coderclass/CEdev/include/cdefs.h \
@@ -16,6 +16,4 @@ obj/src/input.cpp.bc: src/input.cpp src/input.h src/defines.h \
   /home/kaio/Documents/Coderclass/CEdev/include/ti/ui.h src/gfx/gfx.h \
   src/gfx/global_palette.h src/gfx/Dungeonset.h src/gfx/PlayerSprite.h \
   /home/kaio/Documents/Coderclass/CEdev/include/compression.h \
-  src/player.h src/sprite.h src/animated.h src/vector/vector.h \
-  src/tilemap.h src/iswalkable.h src/enemy.h src/weapon.h src/menu.h \
-  src/menuitem.h
+  src/tilemap.h src/animated.h src/iswalkable.h

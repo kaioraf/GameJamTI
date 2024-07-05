@@ -111,7 +111,7 @@ void runGame(
             int tileToWalkTo = currentLevel->ConvertPosition(player->x + 0, player->y + player->jumpVelocity * timeSinceLastUpdate/100);
 
             int jumpAccel = player->updateMovement(timeSinceLastUpdate);
-            if (playerDownCollides(player->x, player->y + jumpAccel * timeSinceLastUpdate/100) == true)
+            if (playerDownCollides(player->x, player->y + jumpAccel * timeSinceLastUpdate/100, currentLevel) == true)
             {
                 player->jumpAccel = 0;
                 jumpAccel = 0;

@@ -6,7 +6,6 @@
 #include "input.h"
 #include "vector/vector.h"
 #include "levelswitch.h"
-#include "chestopen.h"
 #include "weapon.h"
 
 void DrawStatusText(
