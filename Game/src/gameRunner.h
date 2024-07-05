@@ -14,24 +14,24 @@ void DrawStatusText(
             , clock_t timeSincelastUpdate
             );
 
-void runMenu(
-    Player *player
-    , Menu *currentMenu
-    , Menu *winMenu
-    , Menu * mainMenu
-    , Menu *gameOverMenu
-    , Menu *optionsMenu
-    , bool *menuOpen
-    , bool *stopGame
-    );
+// void runMenu(
+//     Player *player
+//     , Menu *currentMenu
+//     , Menu *winMenu
+//     , Menu * mainMenu
+//     , Menu *gameOverMenu
+//     , Menu *optionsMenu
+//     , bool *menuOpen
+//     , bool *stopGame
+//     );
 
 void runGame(
             Player *player
             , Vector<Tilemap*> levels
-            , Weapon *Sword
-            , Vector<Enemy> enemies
-            , Menu *mainMenu
-            , Menu *optionsMenu
-            , Menu *gameOverMenu
-            , Menu *winMenu
+            // , Weapon *Sword
+            // , Vector<Enemy> enemies
+            // , Menu *mainMenu
+            // , Menu *optionsMenu
+            // , Menu *gameOverMenu
+            // , Menu *winMenu
             );

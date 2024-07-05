@@ -14,8 +14,8 @@ void drawEnemyIndicators(
 void updateAll(
     Tilemap *snowLevel_1
     , Player *player
-    , Weapon *Sword
-    , Vector<Enemy> enemies
+    // , Weapon *Sword
+    // , Vector<Enemy> enemies
     );
 
 void menuUpdate(Menu *currentMenu);
