@@ -107,7 +107,20 @@ void runGame(
         if (timeSinceLastUpdate > 1092) // update 30 times per second
         {
             movementInput(arrows, currentLevel, player, enemies, currentWeapon);
-            player.updateMovement(timeSinceLastUpdate, arrows, currentLevel, player, enemies, currentWeapon);
+
+            tileToWalkTo = currentLevel->ConvertPosition(Player->x + 0, Player->y + player.jumpVelocity * timeSinceLastUpdate/100);
+            if (!currentLevel->isWalkable(tileToWalkTo)) return;
+            animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
+
+            int jumpAccel = player.updateMovement(timeSinceLastUpdate, arrows, currentLevel, player, enemies, currentWeapon);
+            if (playerDownCollides(player->x, player->y + jumpAccel * timeSinceLastUpdate/100) == true)
+            {
+                player.jumpAccel = 0;
+                jumpAccel = 0;
+            }
+
+            player->x = player->x + timeSinceLastUpdate/100 * jumpAccel;
+
             weaponInput(controlButtons, currentWeapon);
             updateAll(currentLevel, player, currentWeapon, enemies);
             if (shouldChestOpen(currentLevel, player, controlButtons) && !hasChestLoot)

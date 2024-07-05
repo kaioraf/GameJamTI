@@ -21,7 +21,7 @@ public:
     void InitialiseFlippedSprite();
     void FlipSprite();
     void drawSpriteIndicator(Sprite* IndicatedSprite);
-    void updateMovement(int timeSinceLastUpdate, kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vector<Enemy> enemies, Weapon *sword);
+    int updateMovement(int timeSinceLastUpdate);
     void update();
     ~Player();
 };
