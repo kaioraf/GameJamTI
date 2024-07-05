@@ -52,7 +52,10 @@ void Player::updateMovement(int timeSinceLastUpdate, kb_key_t arrows, Tilemap *c
 {
     jumpAccel -= gravity;
     jumpVelocity += timeSinceLastUpdate * jumpAccel;
-    
+
+    tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + movementY);
+    if (!currentLevel->isWalkable(tileToWalkTo)) return;
+    animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
 }
 
 void Player::update()
