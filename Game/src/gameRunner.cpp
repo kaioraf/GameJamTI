@@ -108,14 +108,14 @@ void runGame(
         {
             movementInput(arrows, currentLevel, player, enemies, currentWeapon);
 
-            tileToWalkTo = currentLevel->ConvertPosition(Player->x + 0, Player->y + player.jumpVelocity * timeSinceLastUpdate/100);
+            int tileToWalkTo = currentLevel->ConvertPosition(player->x + 0, player->y + player->jumpVelocity * timeSinceLastUpdate/100);
             if (!currentLevel->isWalkable(tileToWalkTo)) return;
             animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
 
-            int jumpAccel = player.updateMovement(timeSinceLastUpdate, arrows, currentLevel, player, enemies, currentWeapon);
+            int jumpAccel = player->updateMovement(timeSinceLastUpdate);
             if (playerDownCollides(player->x, player->y + jumpAccel * timeSinceLastUpdate/100) == true)
             {
-                player.jumpAccel = 0;
+                player->jumpAccel = 0;
                 jumpAccel = 0;
             }
 
