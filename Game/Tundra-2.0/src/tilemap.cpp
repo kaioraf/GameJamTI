@@ -26,11 +26,11 @@ int Tilemap::ConvertPosition(int x, int y)
     return tileAtSpritePos;
 }
 
-bool Tilemap::isWalkable(int tileID) //returns based on the iswalkable.h file that has function pointers
+bool Tilemap::kills(int tileID)
 {
-    bool (*isWalkablePtr[1])(int tileID) = {snowLevel_1isWalkable};
-    return (*isWalkablePtr[tilesetID])(tileID);
-}
+    bool (*killsPtr[1])(int tileID) = {snowLevel_1kills};
+    return (*killsPtr[tilessetID])(tileID);
+} 
 
 void Tilemap::update()
 {
