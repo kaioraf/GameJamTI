@@ -109,8 +109,6 @@ void runGame(
             movementInput(arrows, currentLevel, player/* , enemies, currentWeapon */);
 
             int tileToWalkTo = currentLevel->ConvertPosition(player->x + 0, player->y + player->jumpVelocity * timeSinceLastUpdate/100);
-            if (!currentLevel->isWalkable(tileToWalkTo)) return;
-            animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
 
             int jumpAccel = player->updateMovement(timeSinceLastUpdate);
             if (playerDownCollides(player->x, player->y + jumpAccel * timeSinceLastUpdate/100) == true)
@@ -135,25 +133,25 @@ void runGame(
             DrawStatusText(player, timeSinceLastUpdate);
             // dbg_printf("%i \n", CLOCKS_PER_SEC / timeSinceLastUpdate); //fps debug print
             lastUpdate = clockTime;
-            if (shouldLevelSwitch(levelIndex, currentLevel, player))
-            {
-                dbg_printf("index %i  zize %i \n", levelIndex, amountOfLevels);
-                if (levelIndex == amountOfLevels - 1)
-                {
-                    player->hasWon = true;
-                    delete currentWeapon;
-                }
-                else
-                {
-                    levelIndex++;
-                    currentLevel = levels.at(levelIndex);
-                    for (int i = 0; i < enemies.size(); i++)
-                        enemies.at(i).Respawn(currentLevel);
-                    player->x = player->destX = PLAYER_START_X;
-                    player->y = player->destY = PLAYER_START_Y;
-                }
-            }
-            runMenu(player, currentMenu, winMenu, mainMenu, gameOverMenu, optionsMenu, &menuOpen, &stopGame);
+            // if (shouldLevelSwitch(levelIndex, currentLevel, player))
+            // {
+            //     dbg_printf("index %i  zize %i \n", levelIndex, amountOfLevels);
+            //     if (levelIndex == amountOfLevels - 1)
+            //     {
+            //         player->hasWon = true;
+            //         delete currentWeapon;
+            //     }
+            //     else
+            //     {
+            //         levelIndex++;
+            //         currentLevel = levels.at(levelIndex);
+            //         for (int i = 0; i < enemies.size(); i++)
+            //             enemies.at(i).Respawn(currentLevel);
+            //         player->x = player->destX = PLAYER_START_X;
+            //         player->y = player->destY = PLAYER_START_Y;
+            //     }
+            // }
+            // runMenu(player, currentMenu, winMenu, mainMenu, gameOverMenu, optionsMenu, &menuOpen, &stopGame);
             
         }
     } while (!stopGame);

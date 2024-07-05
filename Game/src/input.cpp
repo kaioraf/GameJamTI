@@ -53,23 +53,23 @@ bool tilemapShouldMove(char direction, Tilemap *currentLevel, Player *Player)
     return false;
 }
 
-void weaponInput(kb_key_t controlButtons, Weapon *sword)
-{
-    if (controlButtons && !sword->tilemap->isMoving)
-    {
-        if (controlButtons & kb_2nd)
-        {
-            sword->tilemap->x = 0;
-            sword->tilemap->destX = sword->tilemap->tilemap.tile_width * (sword->tilemap->tilemap.width - 1);
-        }
-        else
-        {
-            return;
-        }
-    }
-}
+// void weaponInput(kb_key_t controlButtons, Weapon *sword)
+// {
+//     if (controlButtons && !sword->tilemap->isMoving)
+//     {
+//         if (controlButtons & kb_2nd)
+//         {
+//             sword->tilemap->x = 0;
+//             sword->tilemap->destX = sword->tilemap->tilemap.tile_width * (sword->tilemap->tilemap.width - 1);
+//         }
+//         else
+//         {
+//             return;
+//         }
+//     }
+// }
 
-void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vector<Enemy> enemies, Weapon *sword) // arrows declared in setup
+void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player/*,  Vector<Enemy> enemies, Weapon *sword */) // arrows declared in setup
 {
     bool animatingTilemap = false;
     int tileToWalkTo;
@@ -78,17 +78,19 @@ void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vecto
     {
         if (arrows & kb_Up) // 2nd instead of kb_up
         {
-            player.jumpAccel = 10;
+            Player->jumpAccel = 10;
+                        if (!currentLevel->isWalkable(tileToWalkTo)) return;
+                        animatingTilemap = tilemapShouldMove('u', currentLevel, Player);
         }
         if (arrows & kb_Right)
         {
-            if (Player->isFlipped)
-            {
-                Player->FlipSprite();
-                sword->Flip();
-            }
+            // if (Player->isFlipped)
+            // {
+            //     Player->FlipSprite();
+            //     sword->Flip();
+            // }
 
-            movement = player.movementSpeed;
+            movementX = Player->movementSpeed;
 
             tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + 0);
             if (!currentLevel->isWalkable(tileToWalkTo)) return;
@@ -96,12 +98,12 @@ void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vecto
         }
         else if (arrows & kb_Left)
         {
-            if (!Player->isFlipped)
-            {
-                Player->FlipSprite();
-                sword->Flip();
-            }
-            movementX = -player.movementSpeed;
+            // if (!Player->isFlipped)
+            // {
+            //     Player->FlipSprite();
+            //     sword->Flip();
+            // }
+            movementX = -Player->movementSpeed;
 
             tileToWalkTo = currentLevel->ConvertPosition(Player->x + movementX, Player->y + 0);
             if (!currentLevel->isWalkable(tileToWalkTo)) return;
@@ -109,10 +111,10 @@ void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vecto
         }
         if (animatingTilemap)
         {
-            for (int i = 0; i < enemies.size(); i++)
-            {
-                enemies.at(i).MoveDestination(-movementX, -movementY);
-            }
+            // for (int i = 0; i < enemies.size(); i++)
+            // {
+            //     enemies.at(i).MoveDestination(-movementX, -movementY);
+            // }
             currentLevel->MoveDestination(movementX, movementY);
         }
         else
@@ -122,8 +124,8 @@ void movementInput(kb_key_t arrows, Tilemap *currentLevel, Player *Player, Vecto
     }
 }
 
-bool playerDownCollides(int posx, int posy) {
-    tilemap.collisionDown(posx, posy);
+bool playerDownCollides(int posx, int posy, Tilemap *currentLevel) {
+    currentLevel->collisionDown(posx, posy);
 }
 
 int menuInput(Menu *currentMenu)
